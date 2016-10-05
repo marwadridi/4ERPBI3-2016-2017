@@ -11,12 +11,13 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+//@Inheritance(strategy=InheritanceType.JOINED)
 //@DiscriminatorColumn(name="d_type")
 public class Employe implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue
 	private int id;
 	private String nom;
 	private String prenom;
@@ -33,7 +34,7 @@ public class Employe implements Serializable {
 	
 	// association one to one bidirectionnelle :
 	
-	@OneToOne
+	@OneToOne (cascade=CascadeType.PERSIST)
 	private Contact contact;
 	
 	@ManyToOne
