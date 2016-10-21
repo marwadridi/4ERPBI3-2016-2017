@@ -14,14 +14,14 @@ public class Contact implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String email;
 	private int numTel;
 	private String adresse;
 	private static final long serialVersionUID = 1L;
 	
-	@OneToOne
-	//(mappedBy="contact")
+	@OneToOne(mappedBy="contact")
 	private Employe employe;
 
 	public Contact() {
@@ -61,5 +61,6 @@ public class Contact implements Serializable {
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
 	}
+	
    
 }

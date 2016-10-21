@@ -16,7 +16,7 @@ public class Technicien extends Employe implements Serializable {
 	
 	private String specialite;
 	private static final long serialVersionUID = 1L;
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Competence> competences;
 
 	public Technicien() {
@@ -34,6 +34,11 @@ public class Technicien extends Employe implements Serializable {
 	}
 	public void setCompetences(List<Competence> competences) {
 		this.competences = competences;
+	}
+	@Override
+	public String toString() {
+		return super.toString()+"Technicien [specialite="
+	+ specialite + "]";
 	}
    
 }

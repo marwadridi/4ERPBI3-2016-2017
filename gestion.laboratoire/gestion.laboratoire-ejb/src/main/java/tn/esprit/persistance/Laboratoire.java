@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,30 +16,31 @@ import javax.persistence.Table;
 @Table(name = "labo")
 public class Laboratoire implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7095925168125653137L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "nomLabo")
 	private String nom;
 	private String adresse;
-	
-	@OneToMany
+
+	@OneToMany(mappedBy = "laboratoire",fetch=FetchType.EAGER)
 	private List<Employe> employes;
 
 	public Laboratoire() {
-		
+
 	}
 
-	
 	public List<Employe> getEmployes() {
 		return employes;
 	}
 
-
 	public void setEmployes(List<Employe> employes) {
 		this.employes = employes;
 	}
-
 
 	public int getId() {
 		return id;
@@ -62,6 +64,11 @@ public class Laboratoire implements Serializable {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	@Override
+	public String toString() {
+		return "Laboratoire [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", employes=" + employes + "]";
 	}
 
 }
