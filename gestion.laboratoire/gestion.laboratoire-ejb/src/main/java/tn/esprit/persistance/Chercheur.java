@@ -10,7 +10,6 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue(value = "Dchercheur")
 public class Chercheur extends Employe implements Serializable {
 
 	private String grade;
