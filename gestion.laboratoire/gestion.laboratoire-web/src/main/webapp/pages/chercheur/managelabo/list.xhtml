@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+	<h:form>
+		<h:dataTable value="#{laboBean.laboratoires}" var="x" border="1">
+
+			<f:facet name="header">
+				<h:outputText value="gestion labo" />
+			</f:facet>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="nom" />
+				</f:facet>
+				<h:outputText value="#{x.nom}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="adresse" />
+				</f:facet>
+				<h:outputText value="#{x.adresse}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="choisir" />
+				</f:facet>
+				<h:commandButton value="choisir" >
+				<f:setPropertyActionListener
+				 value="#{x}" target="#{laboBean.laboratoire}" />
+				<f:setPropertyActionListener 
+				value="true" target="#{laboBean.displayForm}" />
+				
+				</h:commandButton>
+			</h:column>
+
+
+
+		</h:dataTable>
+
+		<h:commandButton actionListener="#{laboBean.doNew()}" 
+		value="new" />
+
+	</h:form>
+
+
+</ui:composition>
