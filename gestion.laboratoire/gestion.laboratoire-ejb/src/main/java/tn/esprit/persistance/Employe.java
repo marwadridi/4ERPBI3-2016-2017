@@ -1,6 +1,7 @@
 package tn.esprit.persistance;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Entity implementation class for Entity: Employe
@@ -26,6 +29,8 @@ public abstract class Employe implements Serializable {
 	private String prenom;
 	private String login;
 	private String password;
+	@Temporal(TemporalType.DATE)
+	private Date dateNaissance;
 	
 	private static final long serialVersionUID = 1L;
 	/*
@@ -142,6 +147,14 @@ public abstract class Employe implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 	
 	

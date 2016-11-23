@@ -18,6 +18,7 @@ public class LoginBean {
 	private String login;
 	private String password;
 	private Employe employe;
+	private boolean loggedIn;
 
 	// injection de dépendances
 
@@ -31,15 +32,17 @@ public class LoginBean {
 		employe = employeServiceLocal.identifierEmploye(login, password);
 
 		if (employe != null) {
-			if (employe instanceof Chercheur)
+			if (employe instanceof Chercheur) {
 				navigateTo = "/pages/chercheur/welcome?faces-redirect=true";
+				setLoggedIn(true);
+			}
 
-			if (employe instanceof Technicien)
+			if (employe instanceof Technicien) {
 				navigateTo = "/pages/technicien/welcome";
+				setLoggedIn(true);
+			}
 		} else {
-			FacesContext.getCurrentInstance()
-			.addMessage("form:btn",
-					new FacesMessage("bad credantials"));
+			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("bad credantials"));
 			navigateTo = "null";
 		}
 		return navigateTo;
@@ -74,6 +77,14 @@ public class LoginBean {
 
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputText value="nom" />
+			<h:inputText id="nom" value="#{subscriptionBean.technicien.nom}" 
+			 required="true" 
+			 requiredMessage="champs obligatoire" >
+			 <f:ajax event="blur" render="msg_nom"></f:ajax>
+			 </h:inputText>
+			 <h:message id="msg_nom" for="nom"/>
+			 
+			<h:outputText value="prenom" />
+			<h:inputText id="prenom" value="#{subscriptionBean.technicien.prenom}"
+			required="true" 
+			requiredMessage="champs obligatoire"/>
+			<h:message for="prenom"/>
+			
+			<h:outputText value="login" />
+			<h:inputText id="login" value="#{subscriptionBean.technicien.login}" 
+			validatorMessage="min 4 max 8" >
+			<f:validateLength minimum="4" maximum="8"/>
+			
+			</h:inputText>
+			<h:message for="login"/>
+			<h:outputText value="password"  />
+			<h:inputSecret id="pass" value="#{subscriptionBean.technicien.password}" 
+			required="true"
+			requiredMessage="champs obligatoire" ></h:inputSecret>
+			<h:message for="pass"/>
+			<h:outputText value="date de naissance" />
+			<h:inputText id="date" value="#{subscriptionBean.technicien.dateNaissance}" 
+			converterMessage="invalide">
+			<f:convertDateTime pattern="dd-MM-yyyy" />
+			</h:inputText>
+			<h:message for="date"/>
+			
+			<h:outputText value="email" />
+			<h:inputText id="email" value="#{subscriptionBean.contact.email}"  
+			validatorMessage="mail invalid">
+			<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+			</h:inputText>
+			<h:message for="email"/>
+			<h:outputText value="num tel" />
+			<h:inputText id="tel" value="#{subscriptionBean.contact.numTel}" 
+			validatorMessage="num tel invalide">
+			
+			<f:validateLength minimum="8" maximum="8"></f:validateLength>
+			</h:inputText>
+			<h:message for="tel"/>
+		</h:panelGrid>
+		<h:commandButton actionListener="#{subscriptionBean.doAddTechnicien()}" 
+		value="add" />
+
+	</h:form>
+
+</body>
+</html>
